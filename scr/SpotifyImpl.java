@@ -8,14 +8,17 @@ import entities.Artist;
 import entities.Country;
 import entities.Song;
 
+
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 public class SpotifyImpl implements Spotify {
 
     // ---------------------------------- ATRIBUTOS -----------------------------------------
     ClosedHash<String, Artist> myArtists;
     ClosedHash<String, Country> myCountries;
-    ClosedHash<String, ClosedHash<Date, MyHeap<Song>>> myTops50;
+    ClosedHash<String, ClosedHash<LocalDate, MyHeap<Song>>> myTops50;
 
     // --------------------------------- CONSTRUCTOR ----------------------------------------
     public SpotifyImpl() {
@@ -42,18 +45,18 @@ public class SpotifyImpl implements Spotify {
         this.myCountries = myCountries;
     }
 
-    public ClosedHash<String, ClosedHash<Date, MyHeap<Song>>> getMyTops50() {
+    public ClosedHash<String, ClosedHash<LocalDate, MyHeap<Song>>> getMyTops50() {
         return myTops50;
     }
 
-    public void setMyTops50(ClosedHash<String, ClosedHash<Date, MyHeap<Song>>> myTops50) {
+    public void setMyTops50(ClosedHash<String, ClosedHash<LocalDate, MyHeap<Song>>> myTops50) {
         this.myTops50 = myTops50;
     }
 
 
     // ----------------------------------- METODOS ------------------------------------------
     @Override
-    public void countysTopTen(String country, Date date) throws EntityDoesntExist, EmptyHashtableException, ListaVaciaExcepcion {
+    public void countriesTopTen(String country, LocalDate date) throws EntityDoesntExist, EmptyHashtableException, ListaVaciaExcepcion {
         /*
     Top 10 canciones en un país en un día dado. Este reporte debe incluir el nombre de
     la canción, el artista, y en qué puesto se encuentra en el top. Las canciones deben
@@ -77,13 +80,14 @@ public class SpotifyImpl implements Spotify {
     }
 
     @Override
-    public void top5OfAllTops(Date date) {
+    public void top5OfAllTops(LocalDate date) {
 
     }
 
     @Override
-    public int anArtistInTop50(Artist artist, String country, Date date) {
+    public int anArtistInTop50(Artist artist, String country, LocalDate date) {
         return 0;
     }
 
 }
+
