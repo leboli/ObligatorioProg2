@@ -31,13 +31,13 @@ public class Main {
                     generateTop5SongsInTop50Report();
                     break;
                 case 3:
-                    //generateTop7ArtistsReport();
+                    generateTop7ArtistsReport();
                     break;
                 case 4:
                     generateArtistOccurrencesReport();
                     break;
                 case 5:
-                    //generateTempoRangeReport();
+                    generateTempoRangeReport();
                     break;
                 case 6:
                     System.out.println("Exiting...");
@@ -106,31 +106,25 @@ public class Main {
         }
     }
 
-/*
+
     private static void generateTop7ArtistsReport() {
         System.out.print("Enter the start date (YYYY-MM-DD): ");
         String startDateString = scanner.nextLine();
         System.out.print("Enter the end date (YYYY-MM-DD): ");
         String endDateString = scanner.nextLine();
 
-        Date startDate = null;
-        Date endDate = null;
+        LocalDate startDate = null;
+        LocalDate endDate = null;
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            startDate = formatter.parse(startDateString);
-            endDate = formatter.parse(endDateString);
-        } catch (ParseException e) {
+            startDate = LocalDate.parse(startDateString);
+            endDate = LocalDate.parse(endDateString);
+        } catch (Exception e) {
             System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
             return; // Return early if the date format is invalid
         }
 
-        List<Artist> top7Artists = (List<Artist>) spotifyService.getTop7Artists(String.valueOf(startDate), String.valueOf(endDate));
-        System.out.println("Top 7 Artists from " + startDate + " to " + endDate + ":");
-        for (Artist artist : top7Artists) {
-            System.out.println(artist);
-        }
     }
-*/
+
 
     private static void generateArtistOccurrencesReport() throws EntityDoesntExist, EmptyHashtableException {
         System.out.print("Enter the artist name: ");
@@ -152,7 +146,7 @@ public class Main {
         System.out.println(artistName + " appeared " + occurrences + " times in the"+ country + " Top 50 on " + date);
     }
 
-    /*
+
     private static void generateTempoRangeReport() {
         System.out.print("Enter the start tempo: ");
         double startTempo = Double.parseDouble(scanner.nextLine());
@@ -163,21 +157,18 @@ public class Main {
         System.out.print("Enter the end date (YYYY-MM-DD): ");
         String endDateString = scanner.nextLine();
 
-        Date startDate = null;
-        Date endDate = null;
+        LocalDate startDate = null;
+        LocalDate endDate = null;
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            startDate = formatter.parse(startDateString);
-            endDate = formatter.parse(endDateString);
-        } catch (ParseException e) {
+            startDate = LocalDate.parse(startDateString);
+            endDate = LocalDate.parse(endDateString);
+        } catch (Exception e) {
             System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
             return; // Return early if the date format is invalid
         }
 
-        int count = spotifyService.getSongsInTempoRange(startTempo, endTempo, String.valueOf(startDate), String.valueOf(endDate));
-        System.out.println("Number of songs with tempo in range " + startTempo + " to " + endTempo + " from " + startDate + " to " + endDate + ": " + count);
     }
-    */
+
 
 
 }

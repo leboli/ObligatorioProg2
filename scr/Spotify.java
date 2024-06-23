@@ -23,7 +23,7 @@ public interface Spotify {
     orden n en notación Big O.
      */
 
-    void top7Artists(Artist artist, String country, LocalDate date1, LocalDate date2);
+    void top7Artists(LocalDate date1, LocalDate date2) throws EntityDoesntExist, EmptyHashtableException;
     /*
     Top 7 artistas que más aparecen en los top 50 para un rango de fechas dado. Cada
     aparición (como cada canción) distinta debe contarse, y se debe separar las

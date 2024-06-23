@@ -140,11 +140,20 @@ public class SpotifyImpl implements Spotify {
     }
 
     @Override
-    public void top7Artists(Artist artist, String country, LocalDate date1, LocalDate date2) {
+    public void top7Artists(LocalDate date1, LocalDate date2) throws EntityDoesntExist, EmptyHashtableException {
 
-        //for (LocalDate date = date1; date.isBefore(date2); date = date.plusDays(1)) {
+        for ( CeldaHash<String, Artist> artist : myArtists.getHash()) {
+            if (artist != null) {
+                int apariciones = 0;
+                for (LocalDate date = date1; date.isBefore(date2); date = date.plusDays(1)) {
+                    //apariciones += artist.getValue().getArtistOccurrencesReport().get(artist.getValue().getName());
+                    return;
+                }
 
-        //}
+            }
+        }
+
+
 
     }
 
