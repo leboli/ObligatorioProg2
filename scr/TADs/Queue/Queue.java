@@ -1,3 +1,4 @@
+
 package TADs.Queue;
 
 import TADs.Node;
@@ -70,4 +71,5 @@ public class Queue<T> implements MyQueue<T> {
         if (length == 0) { return true; }
         return false;
     }
+
 }

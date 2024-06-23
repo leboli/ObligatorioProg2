@@ -1,3 +1,4 @@
+
 package TADs.LinkedList;
 
 import TADs.Node;
@@ -12,7 +13,9 @@ public class MyList<T> implements MyLinkedList<T> {
     // Constructor
     public MyList(Node<T> head) {
         this.head = head;
-        if (head != null) { length++; }
+        if (head != null) {
+            length++;
+        }
     }
 
 
@@ -22,7 +25,9 @@ public class MyList<T> implements MyLinkedList<T> {
     }
 
     public void setHead(Node<T> head) {
-        if (this.head == null) { length++; }
+        if (this.head == null) {
+            length++;
+        }
         this.head = head;
     }
 

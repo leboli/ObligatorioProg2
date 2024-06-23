@@ -1,3 +1,4 @@
+
 package TADs.LinkedList;
 
 import TADs.Node;
@@ -13,4 +14,5 @@ public interface MyLinkedList<T> {
 
     public void addLast(T value);
 }
+
 

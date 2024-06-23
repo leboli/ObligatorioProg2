@@ -1,3 +1,4 @@
+
 package TADs.Hash;
 
 import TADexceptions.EmptyHashtableException;
@@ -69,6 +70,7 @@ public class ClosedHash<K,V> implements HashTable<K,V> {
             this.reSize(newHash, newCapacity);
         }
         int index = key.hashCode()%capacity;
+        index = Math.abs(index);
         this.insert(key, value, index);
     }
 
@@ -95,7 +97,7 @@ public class ClosedHash<K,V> implements HashTable<K,V> {
             CeldaHash<K,V> miCelda = oldHash.get(i);
             this.setHash(newHash);
             if (miCelda != null && miCelda.isState()) {
-                insert(miCelda.getKey(), miCelda.getValue(), miCelda.getKey().hashCode()%newCapacity);
+                insert(miCelda.getKey(), miCelda.getValue(), Math.abs(miCelda.getKey().hashCode()%newCapacity));
             }
         }
         this.setCapacity(newCapacity);
@@ -105,6 +107,7 @@ public class ClosedHash<K,V> implements HashTable<K,V> {
     public boolean contains(K key) {
 
         int index = key.hashCode()%capacity;
+        index = Math.abs(index);
         CeldaHash<K,V> auxCell = new CeldaHash<>(key, null);
 
         if (hash.get(index) == null) {
@@ -149,16 +152,23 @@ public class ClosedHash<K,V> implements HashTable<K,V> {
         }
 
         int index = key.hashCode()%capacity;
+        index = Math.abs(index);
         CeldaHash<K,V> auxCell = new CeldaHash<>(key, null);
-        for (int i = 0; i < capacity; i++) {
-            CeldaHash<K,V> myCell = hash.get(index);
+        for (int i = index; i < capacity; i++) {
+            CeldaHash<K,V> myCell = hash.get(i);
             if (myCell.equals(auxCell)) {
                 return myCell.getValue();
             }
-            index++;
+        }
+        for (int i = 0; i < index; i++) {
+            CeldaHash<K,V> myCell = hash.get(i);
+            if (myCell.equals(auxCell)) {
+                return myCell.getValue();
+            }
         }
         return null;
     }
 
 
 }
+

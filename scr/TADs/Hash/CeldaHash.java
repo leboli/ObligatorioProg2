@@ -1,3 +1,4 @@
+
 package TADs.Hash;
 
 import java.util.Objects;
@@ -51,3 +52,4 @@ public class CeldaHash<K,V> {
                 '}';
     }
 }
+

@@ -1,3 +1,4 @@
+
 package TADs.Queue;
 
 import TADexceptions.EmptyQueueException;
@@ -8,3 +9,4 @@ public interface MyQueue <T> {
     T dequeue () throws EmptyQueueException;
     boolean isEmpty();
 }
+

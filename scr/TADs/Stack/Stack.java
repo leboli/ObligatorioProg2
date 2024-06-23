@@ -1,7 +1,8 @@
+
 package TADs.Stack;
 
-import TADs.Node;
 import TADexceptions.EmptyStackException;
+import TADs.Node;
 
 public class Stack<T> implements MyStack<T> {
     // Atributos
@@ -62,3 +63,4 @@ public class Stack<T> implements MyStack<T> {
         return false;
     }
 }
+

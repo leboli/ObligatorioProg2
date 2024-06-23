@@ -1,3 +1,4 @@
+
 package TADs.Stack;
 
 import TADexceptions.EmptyStackException;

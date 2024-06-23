@@ -1,5 +1,5 @@
-package other;
 
+package other;
 public class FuncionesNumericas {
 
     public static boolean esPrimo(int numero) {
@@ -26,3 +26,4 @@ public class FuncionesNumericas {
     }
 
 }
+

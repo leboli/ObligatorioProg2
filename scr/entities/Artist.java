@@ -1,3 +1,4 @@
+
 package entities;
 
 import TADexceptions.EmptyHashtableException;
@@ -6,12 +7,13 @@ import TADs.Hash.ClosedHash;
 import TADs.Hash.HashTable;
 import TADs.LinkedList.MyList;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Artist {
     // ---------------------------------- ATRIBUTOS -----------------------------------------
     private String name;
-    private HashTable<String, HashTable<Date, Integer>> artistOccurrencesReport;
+    private ClosedHash<String, ClosedHash<LocalDate, Integer>> artistOccurrencesReport;
 
     // --------------------------------- CONSTRUCTOR ----------------------------------------
     public Artist(String name) {
@@ -28,7 +30,7 @@ public class Artist {
         this.name = name;
     }
 
-    public HashTable<String, HashTable<Date, Integer>> getArtistOccurrencesReport() {
+    public ClosedHash<String, ClosedHash<LocalDate, Integer>> getArtistOccurrencesReport() {
         return artistOccurrencesReport;
     }
 
@@ -36,3 +38,4 @@ public class Artist {
 
 
 }
+

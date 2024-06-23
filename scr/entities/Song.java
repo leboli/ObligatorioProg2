@@ -1,8 +1,10 @@
+
 package entities;
 
 import TADs.LinkedList.MyList;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.Objects;
 
 public class Song implements Comparable<Song> {
@@ -14,12 +16,12 @@ public class Song implements Comparable<Song> {
     private int dailyMovement;
     private int weeklyMovement;
     private String country;
-    private Date date;
+    private LocalDate date;
     private int popularity;
     private boolean isExplicit;
     private long durationMs;
     private String albumName;
-    private Date albumReleaseDate;
+    private LocalDate albumReleaseDate;
     private float danceability;
     private float energy;
     private float loudness;
@@ -33,7 +35,7 @@ public class Song implements Comparable<Song> {
     private int timeSignature;
 
     // --------------------------------- CONSTRUCTOR ----------------------------------------
-    public Song(String spotifyId, String name, MyList<Artist> artists, int dailyRank, int dailyMovement, int weeklyMovement, String country, Date date, int popularity, boolean isExplicit, long durationMs, String albumName, Date albumReleaseDate, float danceability, float energy, float loudness, int mode, float speechiness, float acousticness, float instrumentalness, float liveness, float valance, float tempo, int timeSignature) {
+    public Song(String spotifyId, String name, MyList<Artist> artists, int dailyRank, int dailyMovement, int weeklyMovement, String country, LocalDate date, int popularity, boolean isExplicit, long durationMs, String albumName, LocalDate albumReleaseDate, float danceability, float energy, float loudness, int mode, float speechiness, float acousticness, float instrumentalness, float liveness, float valance, float tempo, int timeSignature) {
         this.spotifyId = spotifyId;
         this.name = name;
         this.artists = artists;
@@ -117,11 +119,11 @@ public class Song implements Comparable<Song> {
         this.country = country;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -157,11 +159,11 @@ public class Song implements Comparable<Song> {
         this.albumName = albumName;
     }
 
-    public Date getAlbumReleaseDate() {
+    public LocalDate getAlbumReleaseDate() {
         return albumReleaseDate;
     }
 
-    public void setAlbumReleaseDate(Date albumReleaseDate) {
+    public void setAlbumReleaseDate(LocalDate albumReleaseDate) {
         this.albumReleaseDate = albumReleaseDate;
     }
 
@@ -278,3 +280,4 @@ public class Song implements Comparable<Song> {
         return Objects.hash(spotifyId);
     }
 }
+

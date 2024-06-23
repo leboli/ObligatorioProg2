@@ -1,3 +1,4 @@
+
 package TADs.BinaryTree;
 import TADexceptions.EmptyTreeException;
 
@@ -20,3 +21,4 @@ public interface BinaryTree<T extends Comparable<T>> {
     List<T> inOrder();
 
 }
+

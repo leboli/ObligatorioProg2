@@ -1,5 +1,5 @@
-package TADs.BinaryTree;
 
+package TADs.BinaryTree;
 
 import TADexceptions.EmptyTreeException;
 
