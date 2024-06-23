@@ -1,9 +1,8 @@
 import TADexceptions.EmptyHashtableException;
-import TADs.BinaryTree.BinaryTree;
-import TADs.BinaryTree.SearchBinaryTree;
+import exceptions.EntityDoesntExist;
+import exceptions.InvalidDataException;
 import TADs.Hash.CeldaHash;
 import TADs.Heap.MyHeapImpl;
-import exceptions.EntityDoesntExist;
 import TADexceptions.ListaVaciaExcepcion;
 import TADs.Hash.ClosedHash;
 import TADs.Heap.MyHeap;
@@ -11,7 +10,7 @@ import TADs.LinkedList.MyList;
 import entities.Artist;
 import entities.Country;
 import entities.Song;
-import exceptions.InvalidDataException;
+import other.PrintFunc;
 
 
 import java.time.LocalDate;
@@ -99,9 +98,13 @@ public class SpotifyImpl implements Spotify {
         // Saco los valores que necesito
         for (int i = 0; i < 10; i++) {
             mySong = myTop50.delete();
-            System.out.println("(" + mySong.getDailyRank() + ") " + mySong.getName() + " | " + mySong.getArtists());
+            System.out.println();
+            System.out.print("(" + mySong.getDailyRank() + ") " + mySong.getName() + " | " );
+            PrintFunc.printList(mySong.getArtists());
+
             myTop10.add(mySong);
         }
+        System.out.println();
 
         // Los devuelvlo
         for (int i = 0; i < 10; i++) {
@@ -113,24 +116,25 @@ public class SpotifyImpl implements Spotify {
     public void top5OfAllTops(LocalDate date) throws EntityDoesntExist, EmptyHashtableException, InvalidDataException {
 
         MyHeapImpl<Song> myTop = new MyHeapImpl();
-        ArrayList<CeldaHash<String,ClosedHash<LocalDate, Integer>>> artistsListApp = songsAppereancesByDay.getHash();
-        for (CeldaHash<String,ClosedHash<LocalDate, Integer>> artist : artistsListApp) {
-            if (artist != null) {
+        ArrayList<CeldaHash<String,ClosedHash<LocalDate, Integer>>> songsListApp = songsAppereancesByDay.getHash();
+        for (CeldaHash<String,ClosedHash<LocalDate, Integer>> songs : songsListApp) {
+            if (songs != null) {
 
-                if (!artist.getValue().contains(date)) {
+                if (!songs.getValue().contains(date)) {
                     throw new InvalidDataException();
                 }
 
-                int value = artist.getValue().get(date);
-                String name = mySongs.get(artist.getKey());
-                Song auxSong = new Song(artist.getKey(), name, value);
+                int value = songs.getValue().get(date);
+                String name = mySongs.get(songs.getKey());
+                Song auxSong = new Song(songs.getKey(), name, value);
                 myTop.insert(auxSong);
             }
         }
 
+        System.out.println();
         for (int i = 0; i < 7; i++) {
             Song mySong = myTop.delete();
-            System.out.println(mySong.getName() + "Con " + mySong.getDailyRank() + " apariciones");
+            System.out.println(mySong.getName() + " con " + mySong.getDailyRank() + " apariciones");
         }
 
     }
@@ -138,11 +142,22 @@ public class SpotifyImpl implements Spotify {
     @Override
     public void top7Artists(Artist artist, String country, LocalDate date1, LocalDate date2) {
 
+        //for (LocalDate date = date1; date.isBefore(date2); date = date.plusDays(1)) {
+
+        //}
+
     }
 
     @Override
-    public int amountOfAppereancesByDate(Artist artist, String country, LocalDate date) {
-        return 0;
+    public int amountOfAppereancesByDate(String artist, String country, LocalDate date) throws EntityDoesntExist, EmptyHashtableException {
+        if (!(myCountries.contains(country))) {
+            return 0;
+        }
+        if (!(myArtists.contains(artist))) {
+            return 0;
+        }
+        Artist myArtist = myArtists.get(artist);
+        return myArtist.getArtistOccurrencesReport().get(country).get(date);
     }
 
     @Override

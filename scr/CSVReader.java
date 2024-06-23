@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CSVReader {
     public static SpotifyImpl main(String[] args) throws EntityDoesntExist, EmptyHashtableException {
-        String filePath = "scr/new_universal_top_spotify_songs.csv"; // Cambia esta ruta por la ruta de tu archivo
+        String filePath = "ObligatorioProg2-main/scr/new_universal_top_spotify_songs.csv"; // Cambia esta ruta por la ruta de tu archivo
         //String filePath = "scr/datos.csv";
 
         SpotifyImpl spotify = new SpotifyImpl();
@@ -30,18 +30,6 @@ public class CSVReader {
             while ((line = br.readLine()) != null) {
                 // Dividir la línea usando "," como delimitador
                 String[] values = parseLine(line);
-
-
-                System.out.println(contador + ") ");
-                // Imprimir los valores separados
-                for (String value : values) {
-                    System.out.print(value + " | ");
-                }
-                System.out.println();
-                contador++;
-
-
-
 
                 // Primero creo el pais
                 String countryName = values[6].replace("\"", "");

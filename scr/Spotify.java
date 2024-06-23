@@ -31,10 +31,7 @@ public interface Spotify {
     Si un artista tiene 10 canciones en el top 50, deben contabilizarse 10 ocurrencias
      */
 
-    int amountOfAppereancesByDate(Artist artist, String country, LocalDate date);
-    /*
-    Cantidad de veces que aparece un artista específico en un top 50 en una fecha dada.
-     */
+    int amountOfAppereancesByDate(String artist, String country, LocalDate date) throws EntityDoesntExist, EmptyHashtableException;
 
     int amountOfSongsByTempoAndDate(int tempo1, int tempo2, LocalDate date1, LocalDate date2);
 
