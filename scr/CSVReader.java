@@ -1,5 +1,5 @@
 import TADexceptions.EmptyHashtableException;
-import TADexceptions.EntityDoesntExist;
+import exceptions.EntityDoesntExist;
 import TADs.Hash.ClosedHash;
 import TADs.Heap.MyHeap;
 import TADs.Heap.MyHeapImpl;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVReader {
-    public static void main(String[] args) throws EntityDoesntExist, EmptyHashtableException {
+    public static SpotifyImpl main(String[] args) throws EntityDoesntExist, EmptyHashtableException {
         String filePath = "scr/new_universal_top_spotify_songs.csv"; // Cambia esta ruta por la ruta de tu archivo
         //String filePath = "scr/datos.csv";
 
@@ -119,7 +119,6 @@ public class CSVReader {
                     albumReleaseDate = LocalDate.now();
                 }
 
-
                 float danceability = Float.parseFloat(values[13]);
                 float energy = Float.parseFloat(values[14]);
                 int key = Integer.parseInt(values[15]);
@@ -132,6 +131,25 @@ public class CSVReader {
                 float valance = Float.parseFloat(values[22]);
                 float tempo = Float.parseFloat(values[23]);
                 int timeSignature = Integer.parseInt(values[24].replace(";", ""));
+
+
+                ClosedHash<String, ClosedHash<LocalDate, Integer>> songsAppereancesByDay = spotify.songsAppereancesByDay;
+                if (!(songsAppereancesByDay.contains(spotifyId))) {
+                    songsAppereancesByDay.put(spotifyId, new ClosedHash<>(53));
+                    songsAppereancesByDay.get(spotifyId).put(myDate, 1);
+                    spotify.mySongs.put(spotifyId, name);
+
+                } else if (!(songsAppereancesByDay.get(spotifyId).contains(myDate))) {
+                    ClosedHash<LocalDate, Integer> mySongApp = songsAppereancesByDay.get(spotifyId);
+                    mySongApp.put(myDate, 1);
+
+                } else {
+                    ClosedHash<LocalDate, Integer> mySongApp = songsAppereancesByDay.get(spotifyId);
+                    int prevApp = mySongApp.get(myDate);
+                    mySongApp.remove(myDate);
+                    mySongApp.put(myDate, prevApp + 1);
+                }
+
 
                 // creo la cancion
                 Song mySong = new Song(spotifyId, name, myArtistsList, rank, dailyMovement, weeklyMovement, countryName,
@@ -163,7 +181,7 @@ public class CSVReader {
         }
 
         System.out.println("Datos cargados exitosamente");
-
+        return spotify;
     }
 
     private static String[] parseLine(String line) {
